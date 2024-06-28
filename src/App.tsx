@@ -10,7 +10,9 @@ import { CustomDatePickerDeparture, CustomDatePickerReturn } from './DateInput'
 import BookingCheck from './BookingCkeck'
 import TravelMode from './TravelMode'
 import { TextField } from '@mui/material'
-
+import FlightCard from './FlightCards'
+import axios from 'axios';
+import AllFlightCard from './Allflights'
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -19,10 +21,26 @@ function App() {
   const handleDateChange = (date:any) => {
     setSelectedDate(date);
   };
+  const fetchFlightData = async () => {
+    const data = {
+      "from":"SDQ",
+      "to":"CCS",
+      "cabinPref":"Economy",
+      "passengerQuantity":"1"
+  }
   
+    try {
+      const response = await axios.post('http://localhost:8000/flights/query', data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching flight data:', error);
+    }
+  };
+  fetchFlightData();
+
 
   return (
-    <div className='bg-gray-100  w-[100vw] h-screen flex justify-center items-start'>
+    <div className='bg-gray-100  w-[100vw] flex flex-col justify-center items-center gap-4'>
     <div className='bg-white w-[80%] h-[30%] mt-[120px] flex flex-col items-between justify-between p-3 ' >
       <div className=' flex  items-center justify-between '>
         <div className='flex gap-3'>
@@ -63,6 +81,8 @@ function App() {
     </div>
     {/* <DatePickerInput value={selectedDate} onChange={handleDateChange} /> */}
     </div>
+    {/* <FlightCard></FlightCard> */}
+    <AllFlightCard></AllFlightCard>
     </div>
   )
 }
