@@ -9,14 +9,17 @@ import PassengerSelector from './Passenger'
 import { CustomDatePickerDeparture, CustomDatePickerReturn } from './DateInput'
 import BookingCheck from './BookingCkeck'
 import TravelMode from './TravelMode'
+import { TextField } from '@mui/material'
 
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(null);
-
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
   const handleDateChange = (date:any) => {
     setSelectedDate(date);
   };
+  
 
   return (
     <div className='bg-gray-100  w-[100vw] h-screen flex justify-center items-start'>
@@ -29,13 +32,27 @@ function App() {
       </div>
       <PassengerSelector></PassengerSelector>
       </div>
-      <div className='items-center flex justify-between '>
-      <LocationInputFrom ></LocationInputFrom>
-      <LocationInputTo></LocationInputTo>
+      <div className='flex items-end justify-between '>
+      <TextField
+        id="outlined-basic"
+        label="Origin"
+        variant="outlined"
+        value={origin}
+        onChange={(e)=>setOrigin(e.target.value)}
+      />
+      <TextField
+        id="outlined-basic"
+        label="Destination"
+        variant="outlined"
+        value={destination}
+        onChange={(e)=>setDestination(e.target.value)}
+      />
+      {/* <LocationInputFrom ></LocationInputFrom> */}
+      {/* <LocationInputTo></LocationInputTo> */}
      
     <CustomDatePickerDeparture></CustomDatePickerDeparture>  
     <CustomDatePickerReturn></CustomDatePickerReturn> 
-    <div className='items-end flex justify-between mt-8 ' > 
+    <div className='items-end flex justify-between mb-2 ' > 
     <button className="bg-teal-500 text-white py-3 px-6 rounded transition transform hover:bg-teal-600 active:bg-teal-700 active:scale-95">
       Explore
     </button>
