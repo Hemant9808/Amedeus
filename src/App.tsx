@@ -51,7 +51,7 @@ function App() {
       console.error("Error fetching flight data:", error);
     }
   };
-  fetchFlightData();
+  
 
   return (
     <div className="bg-gray-100  w-[100vw] flex flex-col justify-center items-center gap-4">

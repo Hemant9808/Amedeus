@@ -7,11 +7,11 @@ interface AllFlightCardProps {
 }
 
 const AllFlightCard = ({ data }: AllFlightCardProps) => {
-  const flights = data;
+  const flights = Array.isArray(data) ? data : [];
   return (
     <>
       <div className="  mx-auto p-4">
-        {flights?.map((flight, index) => (
+        {flights.map((flight, index) => (
           <div key={index} className="flex flex-col gap-4">
             <div className="border bg-white rounded-lg shadow-md p-4  flex flex-col w-[40rem]">
 
