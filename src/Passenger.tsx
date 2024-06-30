@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IconButton, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -8,18 +8,32 @@ import BabyChangingStationIcon from '@mui/icons-material/BabyChangingStation';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import LuggageIcon from '@mui/icons-material/Luggage';
 
-const PassengerSelector = () => {
+
+
+interface PassengerSelectorProps {
+  setTotalPassenger: React.Dispatch<React.SetStateAction<number>>;
+  totalPassenger:number
+}
+
+const PassengerSelector: React.FC<PassengerSelectorProps> = ({totalPassenger, setTotalPassenger }) => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
   const [cabinBags, setCabinBags] = useState(0);
   const [checkedBags, setCheckedBags] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+ 
+  useEffect(()=>{
+    setTotalPassenger(adults+children+infants);
+    console.log(totalPassenger);
+    
 
+  },[adults,children,infants])
+ //@ts-ignore
   const handleIncrement = (setter, value) => {
     setter(value + 1);
   };
-
+ //@ts-ignore
   const handleDecrement = (setter, value) => {
     if (value > 0) {
       setter(value - 1);

@@ -6,8 +6,14 @@ import { MenuItem, Select, FormControl, FormControlLabel, Checkbox, Radio, Radio
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-const TravelClassDropdown = () => {
-  const [travelClass, setTravelClass] = useState('Business');
+interface TravelClassDropdownProps {
+
+  setTravelClass: React.Dispatch<React.SetStateAction<string>>;
+  travelClass:string
+}
+
+const TravelClassDropdown: React.FC<TravelClassDropdownProps> = ({travelClass, setTravelClass }) => {
+  
   const [mixedClasses, setMixedClasses] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 

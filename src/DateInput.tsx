@@ -43,6 +43,7 @@ const CustomDatePickerReturn: React.FC = () => {
                 value={value}
                 onChange={handleDateChange}
                 renderInput={(params) => <TextField {...params} />}
+                 //@ts-ignore
                 renderDay={(day: Date, _value: Date | null, DayComponentProps: PickersDayProps<Date>) => (
                   <PickersDay {...DayComponentProps} />
                 )}
@@ -95,6 +96,7 @@ const CustomDatePickerDeparture: React.FC = () => {
                 value={value}
                 onChange={handleDateChange}
                 renderInput={(params) => <TextField {...params} />}
+                 //@ts-ignore
                 renderDay={(day: Date, _value: Date | null, DayComponentProps: PickersDayProps<Date>) => (
                   <PickersDay {...DayComponentProps} />
                 )}

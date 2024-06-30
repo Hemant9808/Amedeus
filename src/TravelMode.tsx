@@ -6,7 +6,13 @@ import { MenuItem, Select, FormControl, FormControlLabel, Checkbox, Radio, Radio
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-const TravelMode= () => {
+interface TravelModeProps {
+
+  setTravelMode: React.Dispatch<React.SetStateAction<string>>;
+  travelMode:string
+}
+
+const TravelMode: React.FC<TravelModeProps> = ({travelMode,setTravelMode}) => {
   const [travelClass, setTravelClass] = useState('One Way');
   const [mixedClasses, setMixedClasses] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +35,7 @@ const TravelMode= () => {
         <Select
         className='border-white h-[30px]'
           label="Travel Mode"
-          value={travelClass}
+          value={travelMode}
           onChange={handleClassChange}
           onClick={toggleDropdown}
           readOnly
