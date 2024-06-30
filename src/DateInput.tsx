@@ -9,7 +9,12 @@ import IconButton from '@mui/material/IconButton';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import CloseIcon from '@mui/icons-material/Close';
 
-const CustomDatePickerReturn: React.FC = () => {
+interface Props{
+  dateValue: Date | null;
+  onChange:any;
+}
+
+const CustomDatePickerReturn = ({dateValue, onChange}: Props) => {
   const [value, setValue] = useState<Date | null>(new Date());
   const [open, setOpen] = useState<boolean>(false);
 
@@ -40,8 +45,8 @@ const CustomDatePickerReturn: React.FC = () => {
           <Box className="absolute mt-2 bg-white p-4 rounded shadow-lg z-10">
             <Stack direction="row" justifyContent="space-between">
               <DatePicker
-                value={value}
-                onChange={handleDateChange}
+                value={dateValue}
+                onChange={(date) => onChange(date)}
                 renderInput={(params) => <TextField {...params} />}
                  //@ts-ignore
                 renderDay={(day: Date, _value: Date | null, DayComponentProps: PickersDayProps<Date>) => (
@@ -62,7 +67,7 @@ const CustomDatePickerReturn: React.FC = () => {
     </LocalizationProvider>
   );
 };
-const CustomDatePickerDeparture: React.FC = () => {
+const CustomDatePickerDeparture = ({dateValue, onChange}: Props) => {
   const [value, setValue] = useState<Date | null>(new Date());
   const [open, setOpen] = useState<boolean>(false);
 
@@ -93,8 +98,8 @@ const CustomDatePickerDeparture: React.FC = () => {
           <Box className="absolute mt-2 bg-white p-4 rounded shadow-lg z-10">
             <Stack direction="row" justifyContent="space-between">
               <DatePicker
-                value={value}
-                onChange={handleDateChange}
+               value={dateValue}
+               onChange={(date) => onChange(date)}
                 renderInput={(params) => <TextField {...params} />}
                  //@ts-ignore
                 renderDay={(day: Date, _value: Date | null, DayComponentProps: PickersDayProps<Date>) => (

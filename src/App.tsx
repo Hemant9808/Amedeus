@@ -22,6 +22,8 @@ function App() {
   const [travelClass, setTravelClass] = useState("Business");
   const [travelMode, setTravelMode] = useState('One Way');
 
+  const [data, setData] = useState();
+  const [departureDate, setDepartureDate] = useState(new Date());
   const handleDateChange = (date: any) => {
     setSelectedDate(date);
   };
@@ -33,6 +35,7 @@ function App() {
     const data = {
       from: "SDQ",
       to: "CCS",
+      departureDate,
       cabinPref: travelClass,
       passengerQuantity: totalPassenger.toString(),
     };
@@ -43,6 +46,7 @@ function App() {
         data
       );
       console.log(response.data);
+      setData(response.data);
     } catch (error) {
       console.error("Error fetching flight data:", error);
     }
@@ -79,10 +83,11 @@ function App() {
             onChange={(e) => setDestination(e.target.value)}
           />
 
-          <CustomDatePickerDeparture></CustomDatePickerDeparture>
-          <CustomDatePickerReturn></CustomDatePickerReturn>
+          <CustomDatePickerDeparture dateValue={departureDate} onChange={setDepartureDate}></CustomDatePickerDeparture>
+          <CustomDatePickerReturn  dateValue={departureDate} onChange={setDepartureDate}></CustomDatePickerReturn>
           <div className="items-end flex justify-between mb-2 ">
-            <button className="bg-teal-500 text-white py-3 px-6 rounded transition transform hover:bg-teal-600 active:bg-teal-700 active:scale-95">
+            <button className="bg-teal-500 text-white py-3 px-6 rounded transition transform hover:bg-teal-600 active:bg-teal-700 active:scale-95"
+    onClick={fetchFlightData}>
               Explore
             </button>
           </div>
@@ -92,7 +97,9 @@ function App() {
         </div>
       </div>
 
-      <AllFlightCard></AllFlightCard>
+      {
+      data!== undefined && data && <AllFlightCard data = {data}></AllFlightCard>
+    }
     </div>
   );
 }
