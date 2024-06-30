@@ -18,25 +18,29 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
+  const [data, setData] = useState();
+  const [departureDate, setDepartureDate] = useState(new Date());
   const handleDateChange = (date:any) => {
     setSelectedDate(date);
   };
   const fetchFlightData = async () => {
     const data = {
-      "from":"SDQ",
-      "to":"CCS",
-      "cabinPref":"Economy",
+      from: origin,
+      to: destination,
+      departureDate,
+      "cabinPref":"Busineess",
       "passengerQuantity":"1"
   }
   
     try {
       const response = await axios.post('http://localhost:8000/flights/query', data);
       console.log(response.data);
+      setData(response.data);
     } catch (error) {
       console.error('Error fetching flight data:', error);
     }
   };
-  fetchFlightData();
+  
 
 
   return (
@@ -68,10 +72,11 @@ function App() {
       {/* <LocationInputFrom ></LocationInputFrom> */}
       {/* <LocationInputTo></LocationInputTo> */}
      
-    <CustomDatePickerDeparture></CustomDatePickerDeparture>  
-    <CustomDatePickerReturn></CustomDatePickerReturn> 
+    <CustomDatePickerDeparture dateValue={departureDate} onChange={setDepartureDate}></CustomDatePickerDeparture>  
+    <CustomDatePickerReturn  dateValue={departureDate} onChange={setDepartureDate}></CustomDatePickerReturn> 
     <div className='items-end flex justify-between mb-2 ' > 
-    <button className="bg-teal-500 text-white py-3 px-6 rounded transition transform hover:bg-teal-600 active:bg-teal-700 active:scale-95">
+    <button className="bg-teal-500 text-white py-3 px-6 rounded transition transform hover:bg-teal-600 active:bg-teal-700 active:scale-95"
+    onClick={fetchFlightData}>
       Explore
     </button>
     </div>
@@ -82,7 +87,9 @@ function App() {
     {/* <DatePickerInput value={selectedDate} onChange={handleDateChange} /> */}
     </div>
     {/* <FlightCard></FlightCard> */}
-    <AllFlightCard></AllFlightCard>
+    {
+      data!== undefined && data && <AllFlightCard data = {data}></AllFlightCard>
+    }
     </div>
   )
 }
