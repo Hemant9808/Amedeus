@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 import "./App.css";
 import TravelClassDropdown from "./BussinessInput";
 
-import DatePickerInput from "./Date";
-import { LocationInputTo, LocationInputFrom } from "./LocationInput";
+
+
 import PassengerSelector from "./Passenger";
 import { CustomDatePickerDeparture, CustomDatePickerReturn } from "./DateInput";
 import BookingCheck from "./BookingCkeck";
 import TravelMode from "./TravelMode";
 import { TextField } from "@mui/material";
-import FlightCard from "./FlightCards";
+
 import axios from "axios";
 import AllFlightCard from "./Allflights";
 
 function App() {
-  const [selectedDate, setSelectedDate] = useState(null);
+
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [totalPassenger, setTotalPassenger] = useState(0);
@@ -24,13 +24,7 @@ function App() {
 
   const [data, setData] = useState();
   const [departureDate, setDepartureDate] = useState(new Date());
-  const handleDateChange = (date: any) => {
-    setSelectedDate(date);
-  };
-  // useEffect(()=>{
-  //   console.log(travelClass);
-  // },[travelClass])
-
+  
   const fetchFlightData = async () => {
     const data = {
       from: "SDQ",

@@ -1,6 +1,4 @@
-import React from "react";
-import FlightCard from "./FlightCards";
-import airlineCodes from 'airline-codes';
+
 
 interface AllFlightCardProps {
   data: any;
@@ -14,8 +12,9 @@ const AllFlightCard = ({ data }: AllFlightCardProps) => {
         {flights.map((flight, index) => (
           <div key={index} className="flex flex-col gap-4">
             <div className="border bg-white rounded-lg shadow-md p-4  flex flex-col w-[40rem]">
-
-              {flight.stopsDetails.map((stop, stopIndex) => (
+                 
+              {//@ts-ignore
+              flight.stopsDetails.map((stop, stopIndex) => (
                 <div className="flex justify-between items-center">
                   <div>
                     <div className="text-sm text-gray-500">

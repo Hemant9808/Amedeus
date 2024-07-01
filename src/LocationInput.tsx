@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
@@ -18,7 +18,8 @@ export function LocationInputFrom() {
     <div className="flex justify-center w-[15rem] mt-10">
       <Autocomplete 
         value={value}
-        onChange={(event, newValue) => {
+        onChange={( newValue) => {
+          //@ts-ignore
           setValue(newValue);
         }}
         options={locations}
@@ -45,7 +46,8 @@ export  function LocationInputTo() {
     <div className="flex w-[15rem] justify-center mt-10">
       <Autocomplete
         value={value}
-        onChange={(event, newValue) => {
+        onChange={( newValue) => {
+          //@ts-ignore
           setValue(newValue);
         }}
         options={locations}

@@ -3,8 +3,7 @@
 
 import React, { useState } from 'react';
 import { MenuItem, Select, FormControl, FormControlLabel, Checkbox, Radio, RadioGroup, FormLabel, OutlinedInput, } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+
 
 interface TravelClassDropdownProps {
 
@@ -79,48 +78,3 @@ const TravelClassDropdown: React.FC<TravelClassDropdownProps> = ({travelClass, s
 export default TravelClassDropdown;
 
 
-// src/TravelClassDropdown.js
-// import React, { useState } from 'react';
-// import { MenuItem, Select, FormControl, InputLabel, Checkbox, ListItemText } from '@mui/material';
-
-// const TravelClassDropdown = () => {
-//   const [travelClass, setTravelClass] = useState('Business');
-//   const [mixedClasses, setMixedClasses] = useState(false);
-
-//   const handleClassChange = (event) => {
-//     setTravelClass(event.target.value);
-//   };
-
-//   const handleMixedClassesChange = (event) => {
-//     setMixedClasses(event.target.checked);
-//   };
-
-//   return (
-//     <div className="p-4 bg-white rounded shadow-md w-64">
-//       <FormControl fullWidth variant="outlined">
-//         <InputLabel id="travel-class-label">Travel Class</InputLabel>
-//         <Select
-//           labelId="travel-class-label"
-//           value={travelClass}
-//           onChange={handleClassChange}
-//           label="Travel Class"
-//         >
-//           <MenuItem value="Economy">Economy</MenuItem>
-//           <MenuItem value="Premium Economy">Premium Economy</MenuItem>
-//           <MenuItem value="Business">Business</MenuItem>
-//           <MenuItem value="First Class">First Class</MenuItem>
-//         </Select>
-//       </FormControl>
-//       <div className="mt-4">
-//         <Checkbox
-//           checked={mixedClasses}
-//           onChange={handleMixedClassesChange}
-//           color="primary"
-//         />
-//         <span>Apply mixed classes</span>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default TravelClassDropdown;

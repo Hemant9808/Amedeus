@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { LocalizationProvider, DatePicker, PickersDay, PickersDayProps } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import TextField from '@mui/material/TextField';
@@ -18,9 +18,9 @@ const CustomDatePickerReturn = ({dateValue, onChange}: Props) => {
   const [value, setValue] = useState<Date | null>(new Date());
   const [open, setOpen] = useState<boolean>(false);
 
-  const handleDateChange = (newValue: Date | null) => {
-    setValue(newValue);
-  };
+  // const handleDateChange = (newValue: Date | null) => {
+  //   setValue(newValue);
+  // };
 
   const handleToggle = () => {
     setOpen(!open);
@@ -71,9 +71,9 @@ const CustomDatePickerDeparture = ({dateValue, onChange}: Props) => {
   const [value, setValue] = useState<Date | null>(new Date());
   const [open, setOpen] = useState<boolean>(false);
 
-  const handleDateChange = (newValue: Date | null) => {
-    setValue(newValue);
-  };
+  // const handleDateChange = (newValue: Date | null) => {
+  //   setValue(newValue);
+  // };
 
   const handleToggle = () => {
     setOpen(!open);
