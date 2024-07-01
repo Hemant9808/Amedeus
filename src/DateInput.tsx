@@ -20,7 +20,8 @@ const CustomDatePickerReturn = ({dateValue, onChange}: Props) => {
 
   // const handleDateChange = (newValue: Date | null) => {
   //   setValue(newValue);
-  // };
+  // };s
+  setValue(null)
 
   const handleToggle = () => {
     setOpen(!open);
