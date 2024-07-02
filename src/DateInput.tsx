@@ -33,8 +33,8 @@ const CustomDatePickerReturn = ({dateValue, onChange}: Props) => {
       <div className="flex flex-col items-center mt-10">
         <TextField
           label="Departure"
-          value={value ? value.toDateString() : ''}
-          onClick={handleToggle}
+          value={dateValue ? dateValue.toDateString() : ''}
+          onClick={()=> {handleToggle;handleDateChange(dateValue)}}
           InputProps={{
             endAdornment: (
               <IconButton onClick={handleToggle}>
@@ -86,7 +86,7 @@ const CustomDatePickerDeparture = ({dateValue, onChange}: Props) => {
       <div className="flex flex-col items-center mt-10">
         <TextField
           label="Return"
-          value={value ? value.toDateString() : ''}
+          value={dateValue ? dateValue.toDateString() : ''}
           onClick={handleToggle}
           InputProps={{
             endAdornment: (
