@@ -22,7 +22,7 @@ function App() {
   const [travelClass, setTravelClass] = useState("Business");
   const [travelMode, setTravelMode] = useState('One Way');
 
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [departureDate, setDepartureDate] = useState(new Date());
   
   const fetchFlightData = async () => {
@@ -36,7 +36,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/flights/query",
+        "https://kiu.onrender.com/flights/query",
         data
       );
       console.log(response.data);
@@ -48,8 +48,8 @@ function App() {
   
 
   return (
-    <div className="bg-gray-100  w-[100vw] flex flex-col justify-center items-center gap-4">
-      <div className="bg-white w-[80%] h-[30%] mt-[120px] flex flex-col items-between justify-between p-3 ">
+    <div className="bg-gray-100 min-h-screen  w-[100vw] flex flex-col justify-start py-[5rem] items-center gap-4">
+      <div className="bg-white w-[80%] h-[30%] flex flex-col items-between justify-between p-3 ">
         <div className=" flex  items-center justify-between ">
           <div className="flex gap-3">
             <TravelMode travelMode={travelMode} setTravelMode={setTravelMode}></TravelMode>
@@ -86,13 +86,16 @@ function App() {
             </button>
           </div>
         </div>
-        <div className="flex justify-end">
+        <div className="flex  mt-5 justify-end">
           <BookingCheck></BookingCheck>
         </div>
       </div>
 
-      {
+      {/* {
       data!== undefined && data && <AllFlightCard data = {data}></AllFlightCard>
+    } */}
+     {
+      data!== undefined && data.length > 0 ? (<AllFlightCard data = {data}></AllFlightCard>):"Data not Found"
     }
     </div>
   );
