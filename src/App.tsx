@@ -76,9 +76,9 @@ function App() {
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
           />
-
-          {/* <CustomDatePickerDeparture dateValue={departureDate} onChange={setDepartureDate}></CustomDatePickerDeparture>
-          <CustomDatePickerReturn  dateValue={departureDate} onChange={setDepartureDate}></CustomDatePickerReturn> */}
+{/* 
+          <CustomDatePickerDeparture dateValue={departureDate} onChange={setDepartureDate}></CustomDatePickerDeparture>
+          <CustomDatePickerReturn  dateValue={departureDate} onChange={setDepartureDate}></CustomDatePickerReturn>  */}
           <div className="items-end flex justify-between mb-2 ">
             <button className="bg-teal-500 text-white py-3 px-6 rounded transition transform hover:bg-teal-600 active:bg-teal-700 active:scale-95"
     onClick={fetchFlightData}>
