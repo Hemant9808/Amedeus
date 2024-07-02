@@ -11,17 +11,18 @@ import CloseIcon from '@mui/icons-material/Close';
 
 interface Props{
   dateValue: Date | null;
-  onChange:any;
+  onChange: (date: Date | null) => void;
 }
 
 const CustomDatePickerReturn = ({dateValue, onChange}: Props) => {
   const [value, setValue] = useState<Date | null>(new Date());
   const [open, setOpen] = useState<boolean>(false);
 
-  // const handleDateChange = (newValue: Date | null) => {
-  //   setValue(newValue);
-  // };s
-  setValue(null)
+  const handleDateChange = (newValue: Date | null) => {
+    setValue(newValue);
+  };
+
+ 
 
   const handleToggle = () => {
     setOpen(!open);
@@ -72,9 +73,9 @@ const CustomDatePickerDeparture = ({dateValue, onChange}: Props) => {
   const [value, setValue] = useState<Date | null>(new Date());
   const [open, setOpen] = useState<boolean>(false);
 
-  // const handleDateChange = (newValue: Date | null) => {
-  //   setValue(newValue);
-  // };
+  const handleDateChange = (newValue: Date | null) => {
+    setValue(newValue);
+  };
 
   const handleToggle = () => {
     setOpen(!open);
