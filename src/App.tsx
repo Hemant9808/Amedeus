@@ -100,14 +100,13 @@ function App() {
     }
 
 <div className="flex flex-col items-center justify-center min-h-screen">
-      <button
-        onClick={() => setShowModal(true)}
+<a href={`tel:${phoneNumber.replace(/\D/g, '')}`}
         className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
       >
         Call {phoneNumber}
-      </button>
+      </a>
 
-      {showModal && (
+      {/* {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white rounded p-4 shadow-lg text-center">
             <p className="mb-4">Call {phoneNumber}?</p>
@@ -125,7 +124,7 @@ function App() {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </div>
     </div>
   );
