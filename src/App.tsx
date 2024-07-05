@@ -46,6 +46,7 @@ function App() {
     }
   };
   
+console.log();
 
   return (
     <div className="bg-gray-100 min-h-screen  w-[100vw] flex flex-col justify-start py-[5rem] items-center gap-4">
@@ -53,7 +54,7 @@ function App() {
         <div className=" flex  items-center justify-between ">
           <div className="flex gap-3">
             <TravelMode travelMode={travelMode} setTravelMode={setTravelMode}></TravelMode>
-
+ 
             <TravelClassDropdown  travelClass={travelClass} setTravelClass={setTravelClass} ></TravelClassDropdown>
           </div>
           <PassengerSelector

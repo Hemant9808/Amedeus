@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import  { Dispatch, useState } from 'react';
 import { LocalizationProvider, DatePicker, PickersDay, PickersDayProps } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import TextField from '@mui/material/TextField';
@@ -11,7 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 interface Props{
   dateValue: Date | null;
-  onChange: (date: Date | null) => void;
+  onChange: any;
 }
 
 const CustomDatePickerReturn = ({dateValue, onChange}: Props) => {
