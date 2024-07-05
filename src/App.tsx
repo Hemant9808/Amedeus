@@ -27,8 +27,8 @@ function App() {
   
   const fetchFlightData = async () => {
     const data = {
-      from: "SDQ",
-      to: "CCS",
+      from:origin,
+      to:destination,
       departureDate,
       cabinPref: travelClass,
       passengerQuantity: totalPassenger.toString(),
@@ -45,8 +45,7 @@ function App() {
       console.error("Error fetching flight data:", error);
     }
   };
-  const [showModal, setShowModal] = useState(false);
-  const phoneNumber = "9304389808";
+  
 
   return (
     <div className="bg-gray-100 min-h-screen  w-[100vw] flex flex-col justify-start py-[5rem] items-center gap-4">
@@ -100,11 +99,6 @@ function App() {
     }
 
 <div className="flex flex-col items-center justify-center min-h-screen">
-<a href={`tel:${phoneNumber.replace(/\D/g, '')}`}
-        className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
-      >
-        Call {phoneNumber}
-      </a>
 
       {/* {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
