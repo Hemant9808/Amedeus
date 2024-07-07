@@ -9,7 +9,7 @@ import PassengerSelector from "./Passenger";
 import { CustomDatePickerDeparture, CustomDatePickerReturn } from "./DateInput";
 import BookingCheck from "./BookingCkeck";
 import TravelMode from "./TravelMode";
-import { TextField } from "@mui/material";
+
 
 import axios from "axios";
 import AllFlightCard from "./Allflights";
@@ -24,7 +24,7 @@ function App() {
   const [travelMode, setTravelMode] = useState('One Way');
 
   const [data, setData] = useState([]);
-  const [autoComplete, setAutoComplete] = useState([]);
+  
 
 
   const [departureDate, setDepartureDate] = useState(new Date());
