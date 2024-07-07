@@ -13,6 +13,7 @@ import { TextField } from "@mui/material";
 
 import axios from "axios";
 import AllFlightCard from "./Allflights";
+import { LocationInputFrom, LocationInputTo } from "./LocationInput";
 
 function App() {
 
@@ -23,12 +24,15 @@ function App() {
   const [travelMode, setTravelMode] = useState('One Way');
 
   const [data, setData] = useState([]);
+  const [autoComplete, setAutoComplete] = useState([]);
+
+
   const [departureDate, setDepartureDate] = useState(new Date());
   
   const fetchFlightData = async () => {
     const data = {
-      from:origin,
-      to:destination,
+      from:"CCS",
+      to:"SDQ",
       departureDate,
       cabinPref: travelClass,
       passengerQuantity: totalPassenger.toString(),
@@ -36,11 +40,14 @@ function App() {
 
     try {
       const response = await axios.post(
-        "https://kiu.onrender.com/flights/query",
+       "https://kiu.onrender.com/flights/query",
+       //"http://localhost:8000/flights/query",
+       
         data
       );
-      console.log(response.data);
+      console.log(response.data.data);
       setData(response.data);
+      
     } catch (error) {
       console.error("Error fetching flight data:", error);
     }
@@ -63,7 +70,7 @@ console.log();
           ></PassengerSelector>
         </div>
         <div className="flex items-end justify-between ">
-          <TextField
+          {/* <TextField
             id="outlined-basic"
             label="Origin"
             variant="outlined"
@@ -76,13 +83,16 @@ console.log();
             variant="outlined"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
-          />
+          /> */}
+          <LocationInputFrom setOrigin={setOrigin} origin={origin} />
+          <LocationInputTo setDestination={setDestination} destination={destination} />
 
           <CustomDatePickerDeparture dateValue={departureDate} onChange={setDepartureDate}></CustomDatePickerDeparture>
           <CustomDatePickerReturn  dateValue={departureDate} onChange={setDepartureDate}></CustomDatePickerReturn> 
           <div className="items-end flex justify-between mb-2 ">
             <button className="bg-teal-500 text-white py-3 px-6 rounded transition transform hover:bg-teal-600 active:bg-teal-700 active:scale-95"
-    onClick={fetchFlightData}>
+  onClick={fetchFlightData}
+    >
               Explore
             </button>
           </div>
@@ -92,34 +102,17 @@ console.log();
         </div>
       </div>
 
-      {/* {
-      data!== undefined && data && <AllFlightCard data = {data}></AllFlightCard>
-    } */}
+       
      {
       data!== undefined && data.length > 0 ? (<AllFlightCard data = {data}></AllFlightCard>):"Data not Found"
     }
 
 <div className="flex flex-col items-center justify-center min-h-screen">
 
-      {/* {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded p-4 shadow-lg text-center">
-            <p className="mb-4">Call {phoneNumber}?</p>
-            <a
-              href={`tel:${phoneNumber.replace(/\D/g, '')}`}
-              className="bg-green-500 text-white font-bold py-2 px-4 rounded mr-2"
-            >
-              Call
-            </a>
-            <button
-              onClick={() => setShowModal(false)}
-              className="bg-red-500 text-white font-bold py-2 px-4 rounded"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )} */}
+     
+      <div>
+        
+      </div>
     </div>
     </div>
   );
