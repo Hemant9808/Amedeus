@@ -31,8 +31,8 @@ function App() {
   
   const fetchFlightData = async () => {
     const data = {
-      from:"CCS",
-      to:"SDQ",
+      from:origin,
+      to:destination,
       departureDate,
       cabinPref: travelClass,
       passengerQuantity: totalPassenger.toString(),
