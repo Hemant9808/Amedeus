@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IconButton, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -7,6 +7,7 @@ import ChildCareIcon from '@mui/icons-material/ChildCare';
 import BabyChangingStationIcon from '@mui/icons-material/BabyChangingStation';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import LuggageIcon from '@mui/icons-material/Luggage';
+import useClickOutside from './utils/closeDropDown';
 
 
 
@@ -43,9 +44,10 @@ const PassengerSelector: React.FC<PassengerSelectorProps> = ({totalPassenger, se
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  useClickOutside(dropdownRef, () => setIsOpen(false));
   return (
-    <div className="relative w-[20rem] ">
+    <div className="relative w-[20rem]" ref={dropdownRef}>
       <TextField
       className="relative h-[30px] "
         label="Passengers"

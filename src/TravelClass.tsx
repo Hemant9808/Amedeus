@@ -1,8 +1,9 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { MenuItem, Select, FormControl, FormControlLabel, Checkbox, Radio, RadioGroup, FormLabel, OutlinedInput, } from '@mui/material';
+import useClickOutside from './utils/closeDropDown';
 
 
 interface TravelClassDropdownProps {
@@ -27,9 +28,13 @@ const TravelClassDropdown: React.FC<TravelClassDropdownProps> = ({travelClass, s
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+
+  useClickOutside(dropdownRef, () => setIsOpen(false));
 
   return (
-    <div className="relative w-[15rem]  ">
+    <div className="relative w-[15rem]  "  ref={dropdownRef}>
       <FormControl fullWidth >
         <Select
         className='border-white h-[30px]'
