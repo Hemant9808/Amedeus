@@ -35,7 +35,8 @@ function App() {
 
     try {
       const response = await axios.post(
-        "https://kiu.onrender.com/flights/query",
+        'https://kiu-xpsy.onrender.com/flights/query',
+        //"https://kiu.onrender.com/flights/query",
         //"http://localhost:8000/flights/query",
 
         data
