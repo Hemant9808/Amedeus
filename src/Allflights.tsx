@@ -13,7 +13,22 @@ interface AllFlightCardProps {
 const AllFlightCard = ({ data }: AllFlightCardProps) => {
   const flights = Array.isArray(data) ? data : [];
 
+  function parseDuration(duration:any) {
+    // Regular expression to match hours and minutes
+    const regex = /PT(?:(\d+)H)?(?:(\d+)M)?/;
+    const matches = duration.match(regex);
+
+    // Extract hours and minutes from the matches
+    const hours = matches[1] ? parseInt(matches[1]) : 0;
+    const minutes = matches[2] ? parseInt(matches[2]) : 0;
+
+    // Format and return the result
+    return `${hours}hr ${minutes}min`;
+}
+
   const calculateFlightDuration = (departingAt:any, arrivingAt:any) => {
+    console.log("departingAt",departingAt);
+    console.log("arrivingAt",arrivingAt);
     const departureDate:any = new Date(departingAt);
     const arrivalDate:any = new Date(arrivingAt);
   
@@ -22,6 +37,8 @@ const AllFlightCard = ({ data }: AllFlightCardProps) => {
   
     const hours = Math.floor(durationInMinutes / 60);
     const minutes = durationInMinutes % 60;
+    console.log(`${hours}h ${minutes}m`);
+    
   
     return `${hours}h ${minutes}m`;
   };
@@ -46,7 +63,7 @@ const AllFlightCard = ({ data }: AllFlightCardProps) => {
                     <div className="flex flex-col">
                       
                       <div className="flex flex-col  justify-between items-center my-2">
-                        <div className="font-bold text-xl">{stop?.origin?.city_name || stop?.origin?.iata_city_code}</div>
+                        <div className="font-bold text-xl">{stop?.origin?.iata_city_code}</div>
                         <div className="text-gray-500">{new Date(stop?.departing_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
                       </div>
                      
@@ -61,15 +78,17 @@ const AllFlightCard = ({ data }: AllFlightCardProps) => {
                           <div className="mx-2">Direct</div>
                         )}
                       </div>
-                      <div className="font-medium"> {calculateFlightDuration(stop?.departing_at, stop?.arrival_at) || " "}</div>
+                      <div className="font-medium"> {calculateFlightDuration(stop?.departing_at, stop?.arriving_at)}</div>
+                      {/* <div className="font-medium"> {parseDuration(stop?.duration)}</div> */}
+
                     </div>
                     <div className="flex flex-col items-end">
                       <div className="text-sm text-gray-500">
                         {stop?.operating_carrier?.name}
                       </div>
                       <div className="flex flex-col items-center my-2 gap-2">
-                        <div className="font-bold text-xl">{stop?.destination?.city_name || stop?.destination?.iata_city_code}</div>
-                        <div className="text-gray-500">{new Date(stop?.arrival_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                        <div className="font-bold text-xl">{stop?.destination?.iata_city_code}</div>
+                        <div className="text-gray-500">{new Date(stop?.arriving_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
                       </div>
                     </div>
                     
