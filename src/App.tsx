@@ -25,20 +25,33 @@ function App() {
   const [departureDate, setDepartureDate] = useState(new Date());
 
   const fetchFlightData = async () => {
+    // const data = {
+    //   from: origin,
+    //   to: destination,
+    //   departureDate,
+    //   cabinPref: travelClass,
+    //   passengerQuantity: totalPassenger.toString(),
+    // };
     const data = {
-      from: origin,
-      to: destination,
-      departureDate,
-      cabinPref: travelClass,
-      passengerQuantity: totalPassenger.toString(),
+
+      // originLocation: origin,
+      // destinationLocation: destination,
+
+
+      originLocation: "VLN",
+      destinationLocation: "MIA",
+      departureDate:"2024-08-14",
+      passengerType:"adult"
+      // cabinPref: travelClass,
+      // passengerQuantity: totalPassenger.toString(),
     };
 
     try {
       const response = await axios.post(
-        'https://kiu-xpsy.onrender.com/flights/query',
+        'https://travel-carib.onrender.com/flight/search-flights',
+        //'https://kiu-xpsy.onrender.com/flights/query',
         //"https://kiu.onrender.com/flights/query",
         //"http://localhost:8000/flights/query",
-
         data
       );
       console.log(response.data.data);
@@ -117,12 +130,12 @@ function App() {
         </div>
       </div>
 
-      {data !== undefined && data.length > 0 ? (
+      {/* {data !== undefined && data.length > 0 ? (
         <AllFlightCard data={data}></AllFlightCard>
       ) : (
         "Data not Found"
-      )}
-
+      )} */}
+<AllFlightCard data={data}></AllFlightCard>
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div></div>
       </div>
