@@ -1,11 +1,12 @@
 import React from 'react'
 import { flightData } from './data';
 import flights from './flightDetails';
+import {searchResultType} from"./types.ts"
 
 
 
 interface AllFlightCardProps {
-  data: any;
+  data: searchResultType[];
   
 }
 
@@ -24,34 +25,35 @@ const AllFlightCard = ({ data }: AllFlightCardProps) => {
   
     return `${hours}h ${minutes}m`;
   };
+  console.log("flight",flights);
+  
   return (
     <>
 
 <div className="mx-auto p-4">
-      {flightData.map((flight:any, index:number) => (
+      {flights.map((flight:any, index:number) => (
         <div key={index} className="flex flex-col gap-4">
           <div className="border bg-white rounded-lg shadow-md p-4 flex flex-col w-[40rem]">
-            {flight.segments.map((segment:any, segmentIndex:any) => (
+            {flight.segments?.map((segment:any,segmentIndex:any) => (
               <div key={segmentIndex} className="flex flex-col gap-4">
-                {segment.map((stop:any, stopIndex:any) => (
+                {segment?.map((stop:any, stopIndex:any) => (
                   <>
                    <div className="text-sm text-gray-500">
-                   {new Date(stop.departing_at).toLocaleDateString()} • Outbound
+                   {new Date(stop?.departing_at).toLocaleDateString()} • Outbound
                  </div>
                   <div key={stopIndex} className="flex justify-between items-center border-b pb-4 mb-4">
                    
-                      
                     <div className="flex flex-col">
                       
                       <div className="flex flex-col  justify-between items-center my-2">
-                        <div className="font-bold text-xl">{stop.origin.city_name || stop.origin.iata_city_code}</div>
-                        <div className="text-gray-500">{new Date(stop.departing_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                        <div className="font-bold text-xl">{stop?.origin?.city_name || stop?.origin?.iata_city_code}</div>
+                        <div className="text-gray-500">{new Date(stop?.departing_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
                       </div>
                      
                     </div>
                     <div className="flex flex-col justify-center items-center">
                       <div className="flex justify-center items-center">
-                        {segment.length > 1 ? (
+                        {segment?.length > 1 ? (
                           <div>
                             <div className="mx-2">Flight {stopIndex + 1}</div>
                           </div>
@@ -59,15 +61,15 @@ const AllFlightCard = ({ data }: AllFlightCardProps) => {
                           <div className="mx-2">Direct</div>
                         )}
                       </div>
-                      <div className="font-medium"> {calculateFlightDuration(stop.departing_at, stop.arrival_at) || " "}</div>
+                      <div className="font-medium"> {calculateFlightDuration(stop?.departing_at, stop?.arrival_at) || " "}</div>
                     </div>
                     <div className="flex flex-col items-end">
                       <div className="text-sm text-gray-500">
-                        {stop.operating_carrier.name}
+                        {stop?.operating_carrier?.name}
                       </div>
                       <div className="flex flex-col items-center my-2 gap-2">
-                        <div className="font-bold text-xl">{stop.destination.city_name || stop.destination.iata_city_code}</div>
-                        <div className="text-gray-500">{new Date(stop.arrival_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                        <div className="font-bold text-xl">{stop?.destination?.city_name || stop?.destination?.iata_city_code}</div>
+                        <div className="text-gray-500">{new Date(stop?.arrival_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
                       </div>
                     </div>
                     
@@ -110,14 +112,14 @@ const AllFlightCard = ({ data }: AllFlightCardProps) => {
                 <div className="flex justify-between items-center">
                   <div>
                     <div className="text-sm text-gray-500">
-                      {new Date(stop.departureDateTime).toLocaleDateString()} • Outbound
+                      {new Date(stop?.departureDateTime).toLocaleDateString()} • Outbound
                     </div>
                     <div className="flex justify-between items-center my-2">
-                      <div className="font-bold text-xl">{stop.from}</div>
+                      <div className="font-bold text-xl">{stop?.from}</div>
 
                      
                     </div>
-                    <div className="text-gray-500">{new Date(stop.arrivalDateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                    <div className="text-gray-500">{new Date(stop?.arrivalDateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
                   </div>
                   <div className="flex flex-col justify-center items-center">
                     <div className="flex  justify-center items-center">
@@ -133,15 +135,15 @@ const AllFlightCard = ({ data }: AllFlightCardProps) => {
                      
                     </div>
 
-                    <div className="font-medium">{stop.journeyDuration}</div>
+                    <div className="font-medium">{stop?.journeyDuration}</div>
                   </div>
                   <div className="flex flex-col items-end">
                     <div className="text-sm text-gray-500">
                     
                     </div>
                     <div className="flex flex-col items-center my-2 gap-2">
-                      <div className="font-bold text-xl">{stop.to} </div>
-                      <div className=" text-gray-500">{new Date(stop.departureDateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} </div>
+                      <div className="font-bold text-xl">{stop?.to} </div>
+                      <div className=" text-gray-500">{new Date(stop?.departureDateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} </div>
                     </div>
                   </div>
                 </div>))}

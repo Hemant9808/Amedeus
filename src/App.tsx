@@ -34,12 +34,12 @@ function App() {
     // };
     const data = {
 
-      // originLocation: origin,
-      // destinationLocation: destination,
+      originLocation: origin,
+      destinationLocation: destination,
 
 
-      originLocation: "VLN",
-      destinationLocation: "MIA",
+      // originLocation: "VLN",
+      // destinationLocation: "MIA",
       departureDate:"2024-08-14",
       passengerType:"adult"
       // cabinPref: travelClass,
@@ -130,12 +130,12 @@ function App() {
         </div>
       </div>
 
-      {/* {data !== undefined && data.length > 0 ? (
+      {data !== undefined && data.length > 0 ? (
         <AllFlightCard data={data}></AllFlightCard>
       ) : (
         "Data not Found"
-      )} */}
-<AllFlightCard data={data}></AllFlightCard>
+      )}
+{/* <AllFlightCard data={data}></AllFlightCard> */}
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div></div>
       </div>
