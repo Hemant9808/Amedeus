@@ -48,7 +48,7 @@ const AllFlightCard = ({ data }: AllFlightCardProps) => {
     <>
 
 <div className="mx-auto p-4">
-      {flights.map((flight:any, index:number) => (
+      {flights.map((flight, index:number) => (
         <div key={index} className="flex flex-col gap-4">
           <div className="border bg-white rounded-lg shadow-md p-4 flex flex-col w-[40rem]">
             {flight.segments?.map((segment:any,segmentIndex:any) => (
@@ -101,10 +101,10 @@ const AllFlightCard = ({ data }: AllFlightCardProps) => {
           
 
             <div className="mt-4">
-              <div className="text-2xl font-bold text-center">131 €</div>
+              <div className="text-2xl font-bold text-center">{flight?.prices?.total_amount} €</div>
               <div className="flex justify-between items-center mt-2">
                 <button className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md">
-                  Lock price for 13 €
+                  Lock price for {flight?.prices?.total_amount}€
                 </button>
                 <button className="bg-green-500 text-white py-2 px-4 rounded-md">
                   Select
